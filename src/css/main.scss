@@ -1,1 +1,887 @@
-/* Your SCSS here. */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap");
+
+$primary-color: #007bff;
+$background-color: #ffffff;
+$text-color: #333333;
+$text-light: #666666;
+$border-color: #e9ecef;
+$overlay-color: rgba(0, 0, 0, 0.8);
+
+$font-family-primary: "Roboto", "Helvetica Neue", Arial, sans-serif;
+$font-family-heading: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+$font-size-base: 16px;
+$line-height-base: 1.6;
+$line-height-heading: 1.2;
+
+$container-max-width: 1200px;
+$section-padding: 80px 0;
+$section-padding-small: 60px 0;
+$content-padding: 0 20px;
+$navbar-height: 80px;
+$navbar-height-small: 60px;
+$border-radius: 8px;
+$box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+$breakpoint-tablet: 1024px;
+$breakpoint-laptop: 1280px;
+$breakpoint-desktop: 1366px;
+
+$transition-fast: 0.2s;
+$transition-normal: 0.3s;
+$transition-slow: 0.5s;
+$easing: ease-in-out;
+
+$z-navbar: 1000;
+$z-modal: 2000;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin transition(
+    $property: all,
+    $duration: $transition-normal,
+    $timing: $easing
+) {
+    transition: $property $duration $timing;
+}
+
+@mixin responsive($breakpoint) {
+    @media (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: $content-padding;
+    text-align: center;
+}
+
+@mixin section {
+    width: 100%;
+    padding: $section-padding;
+    text-align: center;
+
+    @include responsive($breakpoint-tablet) {
+        padding: $section-padding-small;
+    }
+}
+
+@mixin button-base {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: $border-radius;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    @include transition();
+
+    &:focus {
+        outline: 2px solid $primary-color;
+        outline-offset: 2px;
+    }
+}
+
+@mixin button-primary {
+    @include button-base;
+    background-color: $primary-color;
+    color: white;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-2px);
+    }
+}
+
+@mixin card-shadow {
+    box-shadow: $box-shadow;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $text-color;
+    background-color: $background-color;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-heading;
+    line-height: $line-height-heading;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+}
+h2 {
+    font-size: 2.5rem;
+}
+h3 {
+    font-size: 2rem;
+}
+h4 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: $text-light;
+    text-align: center;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+    @include transition(color);
+
+    &:hover {
+        color: darken($primary-color, 15%);
+    }
+}
+
+.container {
+    @include container;
+}
+
+.section {
+    @include section;
+    position: relative;
+
+    &--full-height {
+        min-height: 100vh;
+        @include flex-column-center;
+    }
+
+    &--centered {
+        @include flex-column-center;
+    }
+
+    &--dark {
+        background-color: $text-color;
+        color: white;
+
+        p {
+            color: rgba(white, 0.8);
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    justify-content: center;
+
+    @include responsive($breakpoint-tablet) {
+        margin: 0 -10px;
+    }
+}
+
+.col {
+    flex: 1;
+    padding: 0 15px;
+    text-align: center;
+
+    @include responsive($breakpoint-tablet) {
+        padding: 0 10px;
+    }
+
+    &-2 {
+        flex: 0 0 50%;
+        @include responsive($breakpoint-tablet) {
+            flex: 0 0 100%;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &-3 {
+        flex: 0 0 33.333%;
+        @include responsive(1280px) {
+            flex: 0 0 50%;
+            margin-bottom: 2rem;
+        }
+        @include responsive($breakpoint-tablet) {
+            flex: 0 0 100%;
+        }
+    }
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: rgba(white, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid $border-color;
+    z-index: $z-navbar;
+    @include transition(all, $transition-normal);
+
+    &--large {
+        height: $navbar-height;
+        .navbar__brand {
+            font-size: 1.8rem;
+        }
+        .navbar__link {
+            font-size: 1.1rem;
+        }
+    }
+
+    &--small {
+        height: $navbar-height-small;
+        .navbar__brand {
+            font-size: 1.4rem;
+        }
+        .navbar__link {
+            font-size: 1rem;
+        }
+    }
+}
+
+.navbar__container {
+    @include container;
+    @include flex-between;
+    height: 100%;
+    text-align: left;
+}
+
+.navbar__brand {
+    font-family: $font-family-heading;
+    font-weight: 700;
+    color: $text-color;
+    @include transition(font-size);
+    text-align: left;
+
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+.navbar__nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.navbar__item {
+    margin-left: 2rem;
+    @include responsive($breakpoint-tablet) {
+        margin-left: 1rem;
+    }
+}
+
+.navbar__link {
+    color: $text-color;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    @include transition(all, $transition-fast);
+    text-align: left;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $primary-color;
+        @include transition(width);
+    }
+
+    &:hover {
+        color: $primary-color;
+        &::after {
+            width: 100%;
+        }
+    }
+
+    &--active {
+        color: $primary-color;
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+.navbar__toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+
+    @include responsive($breakpoint-tablet) {
+        display: flex;
+    }
+}
+
+.navbar__toggle-bar {
+    width: 25px;
+    height: 3px;
+    background-color: $text-color;
+    margin: 2px 0;
+    @include transition(all, 0.3s);
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: $border-radius;
+    @include card-shadow;
+}
+
+.carousel__container {
+    display: flex;
+    @include transition(transform, $transition-slow);
+}
+
+.carousel__slide {
+    flex: 0 0 100%;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.carousel__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+
+    h3 {
+        margin-bottom: 0.5rem;
+        color: white;
+    }
+
+    p {
+        color: rgba(white, 0.9);
+        margin: 0;
+    }
+}
+
+.carousel__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(white, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    @include flex-center;
+    @include transition();
+    font-size: 1.2rem;
+    color: $text-color;
+
+    &:hover {
+        background-color: white;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    &--prev {
+        left: 20px;
+    }
+    &--next {
+        right: 20px;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $overlay-color;
+    z-index: $z-modal;
+    @include flex-center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    @include transition(all, $transition-normal);
+
+    &--active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+.modal__content {
+    background-color: white;
+    border-radius: $border-radius;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.7);
+    opacity: 0;
+    @include transition(all, $transition-normal);
+    text-align: center;
+
+    .modal--active & {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: $text-light;
+    @include transition(color);
+
+    &:hover {
+        color: $text-color;
+    }
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: $border-radius;
+    @include card-shadow;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius;
+        border: none;
+    }
+}
+
+.multi-column {
+    columns: 3;
+    column-gap: 2rem;
+    column-rule: 1px solid $border-color;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    p {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+}
+
+.multi-column-4 {
+    columns: 4;
+    column-gap: 2rem;
+    column-rule: 1px solid $border-color;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    p {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: inline-flex;
+    width: 50px;
+    height: 50px;
+    background-color: $primary-color;
+    color: white;
+    border-radius: 50%;
+    @include flex-center;
+    @include transition(all, 0.3s);
+    font-size: 1.2rem;
+    text-decoration: none;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @each $social,
+        $color
+            in (
+                facebook: #3b5998,
+                twitter: #1da1f2,
+                instagram: #e4405f,
+                linkedin: #0077b5
+            )
+    {
+        &--#{$social} {
+            background-color: $color;
+            &:hover {
+                background-color: darken($color, 10%);
+            }
+        }
+    }
+}
+
+.bg-image-section {
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    h1,
+    h2,
+    p {
+        color: white;
+    }
+}
+
+.hero-bg {
+    background-image: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+}
+
+.media-bg {
+    background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+    display: inline-block;
+    @include transition(all, 0.3s);
+
+    &:hover {
+        color: darken($primary-color, 15%);
+        transform: scale(1.2) rotate(10deg);
+        text-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    }
+}
+
+.btn {
+    @include button-base;
+
+    &--primary {
+        @include button-primary;
+    }
+
+    &--secondary {
+        background-color: transparent;
+        color: $primary-color;
+        border: 2px solid $primary-color;
+
+        &:hover {
+            background-color: $primary-color;
+            color: white;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+.flex-center {
+    @include flex-center;
+}
+.flex-column-center {
+    @include flex-column-center;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+        padding: 0 40px;
+    }
+    .section {
+        padding: 120px 0;
+    }
+    h1 {
+        font-size: 4rem;
+    }
+    h2 {
+        font-size: 3.2rem;
+    }
+    h3 {
+        font-size: 2.2rem;
+    }
+    .navbar--large {
+        height: 90px;
+        .navbar__brand {
+            font-size: 2rem;
+        }
+        .navbar__link {
+            font-size: 1.2rem;
+        }
+    }
+    .carousel__slide img {
+        height: 500px;
+    }
+    .carousel__nav {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+    }
+    .social-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+    }
+    .multi-column-4 {
+        columns: 4;
+        max-width: 1400px;
+    }
+}
+
+@media (max-width: 1919px) and (min-width: 1367px) {
+    .container {
+        max-width: 1200px;
+        padding: 0 30px;
+    }
+    .section {
+        padding: 80px 0;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1366px) and (min-width: 1281px) {
+    .container {
+        max-width: 1000px;
+        padding: 0 25px;
+    }
+    .section {
+        padding: 70px 0;
+    }
+    h1 {
+        font-size: 2.8rem;
+    }
+    h2 {
+        font-size: 2.2rem;
+    }
+    h3 {
+        font-size: 1.8rem;
+    }
+    .multi-column {
+        columns: 2;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 1025px) {
+    .container {
+        max-width: 900px;
+        padding: 0 20px;
+    }
+    .section {
+        padding: 60px 0;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.6rem;
+    }
+    .multi-column {
+        columns: 2;
+    }
+}
+
+@media (max-width: 1023px) {
+    .navbar__nav {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        border-top: 1px solid $border-color;
+        display: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+        &--active {
+            display: flex;
+        }
+    }
+
+    .navbar__item {
+        margin: 0;
+        border-bottom: 1px solid $border-color;
+        text-align: center;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .navbar__link {
+        display: block;
+        padding: 1rem;
+        text-align: center;
+        &::after {
+            display: none;
+        }
+    }
+
+    .col {
+        flex: 0 0 100% !important;
+        margin-bottom: 1rem;
+    }
+    .multi-column,
+    .multi-column-4 {
+        columns: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    .section {
+        padding: 30px 0;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.4rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    .carousel__slide img {
+        height: 200px;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 2s ease-out;
+}
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+}

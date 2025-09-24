@@ -2,12 +2,382 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MP1</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bookify - Your Digital Library Companion</title>
+        <meta
+            name="description"
+            content="Bookify is a comprehensive book management platform that helps readers discover, organize, and track their reading journey. Explore our features and join the reading community."
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <link rel="stylesheet" href="css/main.scss" />
     </head>
     <body>
-        <h1>Hello World! Welcome to MP1!</h1>
-        <img src="assets/image.jpg">
+        <nav class="navbar navbar--large" id="navbar">
+            <div class="navbar__container">
+                <a href="#hero" class="navbar__brand">Bookify</a>
+                <ul class="navbar__nav" id="navbar-nav">
+                    <li class="navbar__item">
+                        <a
+                            href="#hero"
+                            class="navbar__link navbar__link--active"
+                            >Home</a
+                        >
+                    </li>
+                    <li class="navbar__item">
+                        <a href="#about" class="navbar__link">About</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a href="#features" class="navbar__link">Features</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a href="#library" class="navbar__link">Library</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a href="#community" class="navbar__link">Community</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a href="#contact" class="navbar__link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <section
+                id="hero"
+                class="
+                    section section--full-height section--centered
+                    bg-image-section
+                    hero-bg
+                "
+            >
+                <div class="container">
+                    <div class="vertical-center vertical-center--full">
+                        <h1 class="animate-fade-in-up">
+                            Your Digital Reading Journey Starts Here
+                        </h1>
+                        <p class="animate-fade-in-up hero-subtitle">
+                            Discover, organize, and track your books with
+                            Bookify - the ultimate digital library companion
+                        </p>
+                        <a
+                            href="#about"
+                            class="
+                                btn btn--primary
+                                animate-fade-in-up
+                                hero-button
+                            "
+                            >Start Reading</a
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <div class="container">
+                    <div class="text-center mb-3 simple-fade-in">
+                        <h2>About Bookify</h2>
+                        <p>
+                            Revolutionizing how readers discover and manage
+                            their literary journey
+                        </p>
+                    </div>
+                    <div class="multi-column-4">
+                        <p>
+                            Bookify is a comprehensive digital library platform
+                            designed to enhance your reading experience. Whether
+                            you're a casual reader or a literary enthusiast,
+                            Bookify provides the tools you need to discover new
+                            books, organize your collection, and track your
+                            reading progress with ease.
+                        </p>
+
+                        <p>
+                            Our platform combines powerful search capabilities
+                            with personalized recommendations, helping you find
+                            your next favorite book. With features like reading
+                            lists, progress tracking, and social sharing,
+                            Bookify transforms reading from a solitary activity
+                            into an engaging community experience.
+                        </p>
+
+                        <p>
+                            At Bookify, we believe that every book has the power
+                            to inspire, educate, and transform lives. Our
+                            mission is to make literature more accessible and
+                            enjoyable for readers worldwide, fostering a global
+                            community of book lovers who share their passion for
+                            the written word.
+                        </p>
+
+                        <p>
+                            We pride ourselves on creating an intuitive,
+                            user-friendly platform that adapts to your reading
+                            habits. From bestsellers to hidden gems, fiction to
+                            non-fiction, Bookify is your gateway to unlimited
+                            literary adventures and meaningful connections with
+                            fellow readers.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="section section--dark">
+                <div class="container">
+                    <div class="text-center mb-3">
+                        <h2>Bookify Features</h2>
+                        <p>
+                            Everything you need for the perfect reading
+                            experience
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col col-3">
+                            <div class="text-center">
+                                <i class="fas fa-book service-icon"></i>
+                                <h3>Digital Library</h3>
+                                <p>
+                                    Access thousands of books in our
+                                    comprehensive digital library with advanced
+                                    search and filtering.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col col-3">
+                            <div class="text-center">
+                                <i class="fas fa-chart-line service-icon"></i>
+                                <h3>Progress Tracking</h3>
+                                <p>
+                                    Track your reading progress, set goals, and
+                                    visualize your literary journey with
+                                    detailed analytics.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col col-3">
+                            <div class="text-center">
+                                <i class="fas fa-users service-icon"></i>
+                                <h3>Reading Community</h3>
+                                <p>
+                                    Connect with fellow readers, share reviews,
+                                    and discover books through community
+                                    recommendations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="library" class="section">
+                <div class="container">
+                    <div class="text-center mb-3 simple-fade-in">
+                        <h2>Featured Books</h2>
+                        <p>
+                            Discover popular and trending books in our digital
+                            library
+                        </p>
+                    </div>
+                    <div class="carousel smooth-scale" id="portfolio-carousel">
+                        <div
+                            class="carousel__container"
+                            id="carousel-container"
+                        >
+                            <div class="carousel__slide">
+                                <img
+                                    src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Classic Literature Collection"
+                                />
+                                <div class="carousel__content">
+                                    <h3>Classic Literature</h3>
+                                    <p>
+                                        Explore timeless masterpieces from
+                                        renowned authors that have shaped
+                                        literary history.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel__slide">
+                                <img
+                                    src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Modern Fiction"
+                                />
+                                <div class="carousel__content">
+                                    <h3>Modern Fiction</h3>
+                                    <p>
+                                        Discover contemporary novels and stories
+                                        from today's most celebrated authors.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel__slide">
+                                <img
+                                    src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Non-Fiction & Biographies"
+                                />
+                                <div class="carousel__content">
+                                    <h3>Non-Fiction & Biographies</h3>
+                                    <p>
+                                        Learn from real-life stories, historical
+                                        accounts, and educational content.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="carousel__nav carousel__nav--prev"
+                            id="carousel-prev"
+                        >
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button
+                            class="carousel__nav carousel__nav--next"
+                            id="carousel-next"
+                        >
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="community" class="section bg-image-section media-bg">
+                <div class="container">
+                    <div class="text-center mb-3">
+                        <h2>Join Our Reading Community</h2>
+                        <p>
+                            Connect with fellow book lovers and share your
+                            reading journey
+                        </p>
+                    </div>
+                    <div class="video-container">
+                        <video
+                            title="Bookify Community Video"
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                        >
+                            <source src="assets/demo.mp4" type="video/mp4"
+                        </video>
+                    </div>
+                    <div class="text-center mt-2">
+                        <button class="btn btn--primary" id="modal-trigger">
+                            Learn More About Bookify
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section">
+                <div class="container">
+                    <div class="text-center mb-3">
+                        <h2>Get In Touch</h2>
+                        <p>
+                            Ready to start your reading journey? Let's connect!
+                        </p>
+                    </div>
+                    <div class="col col-2 smooth-hover">
+                        <h3 class="simple-fade-in">Contact Information</h3>
+                        <p><i class="fas fa-envelope"></i> hello@Bookify.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-BOOK</p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i> 123 Library
+                            Lane, Reading City, RC 12345
+                        </p>
+                    </div>
+                    <div class="col col-2">
+                        <div class="social-icons">
+                            <a
+                                href="#"
+                                class="social-icon social-icon--facebook"
+                                aria-label="Facebook"
+                            >
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a
+                                href="#"
+                                class="social-icon social-icon--twitter"
+                                aria-label="Twitter"
+                            >
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a
+                                href="#"
+                                class="social-icon social-icon--instagram"
+                                aria-label="Instagram"
+                            >
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a
+                                href="#"
+                                class="social-icon social-icon--linkedin"
+                                aria-label="LinkedIn"
+                            >
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="section section--dark footer-section">
+            <div class="container">
+                <div class="text-center">
+                    <p>
+                        &copy; 2025 Bookify. All rights reserved. | Designed
+                        with
+                        <i class="fas fa-heart heart-icon"></i> for book lovers
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <div class="modal" id="process-modal">
+            <div class="modal__content">
+                <button class="modal__close" id="modal-close">&times;</button>
+                <h2>How Bookify Works</h2>
+                <p>
+                    Bookify is designed to enhance your reading experience
+                    through innovative features and a user-friendly interface
+                    that adapts to your reading habits.
+                </p>
+
+                <h3>1. Discover Books</h3>
+                <p>
+                    Browse our extensive digital library with advanced search
+                    filters, genre categories, and personalized recommendations
+                    based on your reading history and preferences.
+                </p>
+
+                <h3>2. Track Your Progress</h3>
+                <p>
+                    Set reading goals, monitor your progress, and visualize your
+                    reading journey with detailed statistics and achievements
+                    that motivate you to read more.
+                </p>
+
+                <h3>3. Connect & Share</h3>
+                <p>
+                    Join reading groups, share book reviews, participate in
+                    discussions, and discover new books through recommendations
+                    from fellow readers in our community.
+                </p>
+
+                <h3>4. Organize Your Library</h3>
+                <p>
+                    Create custom reading lists, bookmark favorite passages,
+                    take notes, and organize your personal digital library with
+                    tags and categories that make sense to you.
+                </p>
+            </div>
+        </div>
+
+        <script src="js/main.js"></script>
     </body>
 </html>
